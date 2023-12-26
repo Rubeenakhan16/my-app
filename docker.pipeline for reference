@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('gitchekout') {
+            steps {
+                git 'https://github.com/Rubeenakhan16/my-app.git'
+            }
+        }
+        stage('maven') {
+            steps {
+                sh "mvn clean install"
+            }
+        }
+        stage('build') {
+            steps {
+                sh "docker build -t rubinafayeen58/testing:${env.BUILD_NUMBER} ."
+            }
+        }
+        stage('push') {
+            environment {
+               
+                DOCKER_CRED = credentials('docker')
+            }
+            steps {
+               
+                sh "docker login -u ${DOCKER_CRED_USR} -p ${DOCKER_CRED_PSW}"
+
+                
+                sh "docker push rubinafayeen58/testing:${env.BUILD_NUMBER}"
+
+                
+                sh "docker logout"
+            }
+        }
+    }
+}
