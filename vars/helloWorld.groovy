@@ -1,3 +1,3 @@
 def call() {
-  sh 'hi this is for testing bro'
+  sh 'echo hi this is for testing bro'
 }
