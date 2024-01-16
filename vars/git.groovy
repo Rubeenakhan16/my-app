@@ -1,4 +1,3 @@
 def call() {
-  git 'https://github.com/artisenzubair/my-app.git'
+    git(url: 'https://github.com/artisenzubair/my-app.git')
 }
-
