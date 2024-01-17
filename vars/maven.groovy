@@ -3,13 +3,19 @@
 def call() {
     pipeline {
         agent any
-    tools  {
-        maven 'maven'
-    }
+        tools {
+            maven 'maven'
+        }
         stages {
             stage('gitcheckout') {
                 steps {
-                    git 'https://github.com/artisenzubair/my-app.git'
+                    script {
+                        // Use the 'node' block to run on a specific agent
+                        node {
+                            // Inside 'node', you can use 'git'
+                            git 'https://github.com/artisenzubair/my-app.git'
+                        }
+                    }
                 }
             }
             stage('Maven Build') {
