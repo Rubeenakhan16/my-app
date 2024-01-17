@@ -3,7 +3,7 @@
 def call() {
     pipeline {
         agent any
-    toos  {
+    tools  {
         maven 'maven'
     }
         stages {
