@@ -3,8 +3,15 @@
 def call() {
     pipeline {
         agent any
-
+    toos  {
+        maven 'maven'
+    }
         stages {
+            stage('gitcheckout') {
+                steps {
+                    git 'https://github.com/artisenzubair/my-app.git'
+                }
+            }
             stage('Maven Build') {
                 steps {
                     script {
