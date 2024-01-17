@@ -2,13 +2,10 @@
 
 def call() {
     pipeline {
-        agent none
+        agent any
 
         stages {
             stage('Git Checkout') {
-                agent {
-                    label "maven"
-                }
                 steps {
                     script {
                         // Inside 'script', you can use 'git'
